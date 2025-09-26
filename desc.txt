@@ -1,0 +1,12 @@
+This project is dedicated to help me Learn mobile app development. I am currently building an app called : Unitime.
+    It's purpose ? simple, it is to help student better communicate when it comes to schedule changes and compus events.
+    Because here is Algeria, those sudden changes take time to arrive to the students knowledge, that due to many reasons :
+        - Because the administration publishes the updates in the official site of the university, which student don't visit often.
+        - Also we tend to use google classroom, but it lack a visual representation.
+        That where my app comes in, it will offer smooth ux/ui (which you will help me design in the future) a good calendar using SfCalendar.
+
+
+The stack I am currently using :
+    Front end: Flutter
+    Back end : Spring boot with gradle, I initialized it with springInitializr.
+    Database : PostgreSQL

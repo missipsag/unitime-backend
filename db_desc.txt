@@ -1,0 +1,13 @@
+I am currently coding a new app called unitime, it's for student in university. the main functionality is a calendar where schedule gets updated super fast. Now I am in the database design phase (pgsql). I am thinking about creating these tables: 
+users, appointments, role_assingnemts, promotions, groups, 
+enums : appointment_type, promotion (L1, L2,...). 
+Few things to keep in mind: 
+- I'm planning to make groupe and promotion accessible via a code/password, just like (google classroom)
+- In Algeria, each student gets assigned to a group that he will keep throughout the entire academic year 
+- no need to track attendance, application is designed to inform students about sudden changes in schedules and special events arount campus
+- no need to track locations either, when creating an appointment the user will just enter a string as the location. 
+- I was thinkin about creating one table for appointment/special events inside there will be a field called event type
+- A user can only be part a single group at the same time, no groups changes allowed for now. 
+- there no difference between teacher an students (role wise) 
+- Recurring events : we'll store a string that then the sfCalednar widget will use. yes I use flutter for the front end.
+
