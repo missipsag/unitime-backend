@@ -1,12 +1,18 @@
 package com.unitime.unitime_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "appointments")
 public class Appointment {
     @Id
@@ -26,14 +32,14 @@ public class Appointment {
     private Timestamp endTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "appointment_type")
+    @Column(name = "event_type")
     private AppointmentType appointmentType;
 
     @Column(name = "recurrence_rule")
     private String recurrenceRule;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "created_by",referencedColumnName = "id",nullable = true)
     private User createdBy;
 
     @Column(name = "created_at")
@@ -41,4 +47,6 @@ public class Appointment {
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+
+
 }

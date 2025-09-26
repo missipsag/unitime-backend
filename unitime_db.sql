@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS user_groups(
 -- Appointments/Events table (unified table for all calendar events)
 CREATE TABLE IF NOT EXISTS appointments(
     id SERIAL PRIMARY KEY,
-    subject VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
     location VARCHAR(255), -- Simple string as requested
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,

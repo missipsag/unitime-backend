@@ -15,6 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.unitime.unitime_backend.mapper.UserMapper;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Service
 @Data
 public class AuthenticationService {
@@ -48,7 +52,6 @@ public class AuthenticationService {
     public JwtResponseDTO login(UserLoginDTO input) {
         User user = userRepository.findByEmail(input.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User with email : "+ input.getEmail() +" not found"));
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         input.getEmail(),
