@@ -30,7 +30,7 @@ public  class User implements UserDetails {
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
-    @Column(name = "email", nullable = false, length = 255)
+    @Column(name = "email", nullable = false, unique = true, length = 255)
     @Email
     private String email;
 
@@ -100,6 +100,4 @@ public  class User implements UserDetails {
     public boolean isEnabled(){
         return true;
     }
-
-
 }

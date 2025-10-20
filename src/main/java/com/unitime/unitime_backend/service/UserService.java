@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -62,7 +62,6 @@ public class UserService {
        newUser.setRole(UserRole.STUDENT);
 
        User savedUser = userRepository.save(newUser);
-
        return userMapper.toResponseDTO(savedUser);
     }
 

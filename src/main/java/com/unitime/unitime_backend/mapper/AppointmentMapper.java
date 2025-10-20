@@ -14,6 +14,7 @@ public interface AppointmentMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "createdBy", ignore = true)
     Appointment toEntity(AppointmentCreateDTO appointmentCreateDTO);
 
 
