@@ -3,15 +3,11 @@ package com.unitime.unitime_backend.controller;
 import com.unitime.unitime_backend.dto.appointment.AppointmentCreateDTO;
 import com.unitime.unitime_backend.dto.appointment.AppointmentDeleteDTO;
 import com.unitime.unitime_backend.dto.appointment.AppointmentResponseDTO;
-import com.unitime.unitime_backend.entity.Appointment;
-import com.unitime.unitime_backend.entity.User;
-import com.unitime.unitime_backend.exception.ResourceNotFoundException;
 import com.unitime.unitime_backend.mapper.AppointmentMapper;
 import com.unitime.unitime_backend.repository.GroupRepository;
 import com.unitime.unitime_backend.service.AppointmentService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,13 +39,7 @@ public class AppointmentController {
 
     @GetMapping("/get")
     public ResponseEntity<List<AppointmentResponseDTO>> getAppointments() {
-        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        var group = groupRepository.findById(user.getGroup().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Group not found"
-                ));
-
-        List<AppointmentResponseDTO> appointments = appointmentService.getAppointments(group.getId());
+        List<AppointmentResponseDTO> appointments = appointmentService.getAppointments();
         return ResponseEntity.ok(appointments);
     }
 

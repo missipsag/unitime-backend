@@ -1,5 +1,7 @@
 package com.unitime.unitime_backend.dto.appointment;
 
+import com.unitime.unitime_backend.dto.user.UserResponseDTO;
+import com.unitime.unitime_backend.entity.AppointmentScope;
 import com.unitime.unitime_backend.entity.AppointmentType;
 import com.unitime.unitime_backend.entity.User;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class AppointmentResponseDTO {
     private final Timestamp startTime;
     private final Timestamp endTime;
     private final AppointmentType appointmentType;
+    private final AppointmentScope appointmentScope;
     private final String recurrenceRule;
-    private final User createdBy;
+    private final UserResponseDTO createdBy;
 }

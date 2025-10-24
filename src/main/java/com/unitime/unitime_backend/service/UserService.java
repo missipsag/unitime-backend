@@ -36,8 +36,6 @@ public class UserService {
        this.passwordEncoder = encoder;
     }
 
-//    public getUser();
-
     public UserResponseDTO updateUser(long id, UserUpdateDTO requestBody) {
             User user = userRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("User not found with id : "+ id));
