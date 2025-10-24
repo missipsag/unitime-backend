@@ -11,6 +11,7 @@ import com.unitime.unitime_backend.mapper.PromotionMapper;
 import com.unitime.unitime_backend.repository.GroupRepository;
 import com.unitime.unitime_backend.repository.PromotionRepository;
 import com.unitime.unitime_backend.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @Data
+@Transactional
 public class PromotionService {
 
     private final PromotionMapper promotionMapper;
