@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Data
@@ -32,8 +33,12 @@ public class Appointment {
     private Timestamp endTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "event_type")
+    @Column(name = "appointment_type")
     private AppointmentType appointmentType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "appointment_scope")
+    private AppointmentScope appointmentScope;
 
     @Column(name = "recurrence_rule")
     private String recurrenceRule;
@@ -47,6 +52,17 @@ public class Appointment {
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Timestamp.from(Instant.now());
+        updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Timestamp.from(Instant.now());
+    }
 
 
 }
