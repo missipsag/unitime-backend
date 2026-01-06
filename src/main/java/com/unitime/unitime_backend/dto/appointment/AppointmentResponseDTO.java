@@ -3,11 +3,9 @@ package com.unitime.unitime_backend.dto.appointment;
 import com.unitime.unitime_backend.dto.user.UserResponseDTO;
 import com.unitime.unitime_backend.entity.AppointmentScope;
 import com.unitime.unitime_backend.entity.AppointmentType;
-import com.unitime.unitime_backend.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
