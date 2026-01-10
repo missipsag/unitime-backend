@@ -26,7 +26,7 @@ public class PromotionController {
         return ResponseEntity.ok(newGroup);
     }
 
-    @GetMapping("/get")
+    @PostMapping("/get")
     public ResponseEntity<PromotionResponseDTO> getPromotion(
             @RequestBody PromotionGetDTO accessCode
     ) {

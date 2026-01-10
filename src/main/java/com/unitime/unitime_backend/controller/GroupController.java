@@ -28,7 +28,7 @@ public class GroupController {
         return ResponseEntity.ok(groupService.updateGroup(request)) ;
     }
 
-    @GetMapping("/get")
+    @PostMapping("/get")
     public ResponseEntity<GroupResponseDTO> getGroup(
             @RequestBody GroupGetDTO accessCode
     ) {
