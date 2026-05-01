@@ -8,6 +8,7 @@ import com.unitime.unitime_backend.repository.GroupRepository;
 import com.unitime.unitime_backend.service.AppointmentService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +22,16 @@ public class AppointmentController {
     private final AppointmentMapper appointmentMapper;
 
     @PostMapping("/create")
-    public ResponseEntity<AppointmentResponseDTO> createAppointment(@RequestBody AppointmentCreateDTO request) {
+    @PreAuthorize("hasAnyRole('GROUP_ADMIN', 'PROMOTION_ADMIN', 'SUPER_ADMIN')")
+    public ResponseEntity<AppointmentResponseDTO> createAppointment(
+            @RequestBody AppointmentCreateDTO request
+    ) {
         var newAppointment = appointmentService.createAppointment(request);
-
         return ResponseEntity.ok(newAppointment);
     }
 
     @DeleteMapping("/delete")
+    @PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
     public ResponseEntity<Void> deleteAppointment(
             @RequestBody AppointmentDeleteDTO request
             ) {
@@ -38,9 +42,24 @@ public class AppointmentController {
     // todo : this code only return group appointments. It should return both group and section level appointments
 
     @GetMapping("/get")
+    @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<List<AppointmentResponseDTO>> getAppointments() {
         List<AppointmentResponseDTO> appointments = appointmentService.getAppointments();
         return ResponseEntity.ok(appointments);
+    }
+
+    @PostMapping("/currentAppointments")
+    @PreAuthorize("principal.promotion != null and principal.group != null ")
+    public ResponseEntity<List<AppointmentResponseDTO>> getCurrentAppointments() {
+        List<AppointmentResponseDTO> currAppointments = appointmentService.getCurrentAppointments();
+        return ResponseEntity.ok(currAppointments);
+    }
+
+    @PostMapping("/getUpcomingSpecialEvents")
+    @PreAuthorize("principal.promotion != null and principal.group != null")
+    public  ResponseEntity<List<AppointmentResponseDTO>> getUpcomingSpecialEvents() {
+        List<AppointmentResponseDTO> currWeekSpecialEvents = appointmentService.getUpcomingSpecialEvents();
+        return ResponseEntity.ok(currWeekSpecialEvents);
     }
 
 }
